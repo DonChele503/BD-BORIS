@@ -1,0 +1,41 @@
+// Inclusión de librerías
+#include <stdlib.h>
+#include <stdio.h>
+#include <locale.h>
+
+// Declaración de funciones
+int busqueda_binaria(int arr[], int n, int x);
+
+// Función principal
+int main() {
+	
+	 setlocale(LC_ALL, "Spanish");
+    // Código del programa
+    int arr[] = {2, 3, 4, 10, 40};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x = 40;
+    int resultado = busqueda_binaria(arr, n, x);
+    if (resultado == -1) {
+        printf("El elemento no se encuentra en el arreglo.\n");
+    } else {
+        printf("El elemento se encuentra en la posición %d del arreglo.\n", resultado);
+    }
+    return 0;
+}
+
+// Definición de funciones
+int busqueda_binaria(int arr[], int n, int x){
+    int izquierda = 0, derecha = n - 1;
+    while (izquierda <= derecha) {
+        int medio = izquierda + (derecha - izquierda) / 2;
+        if (arr[medio] == x) {
+            return medio;
+        }
+        if (arr[medio] < x) {
+            izquierda = medio + 1;
+        } else {
+            derecha = medio - 1;
+        }
+    }
+    return -1;
+}
